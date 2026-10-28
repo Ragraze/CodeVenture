@@ -2,6 +2,50 @@ import { test, expect } from '@playwright/test';
 import axe from 'axe-core';
 import { paths } from '../../resources/js/courses.js';
 
+test('mobile menu stays closed after history navigation and page restoration', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/jalur');
+    const menu = page.getByRole('button', { name: 'Menu', exact: true });
+    const nav = page.locator('#main-nav');
+    const expectClosed = async () => {
+        await expect(menu).toHaveAttribute('aria-expanded', 'false');
+        await expect(nav).toBeHidden();
+    };
+    await expectClosed();
+    await expect(menu.locator('svg')).toBeVisible();
+    await expect(menu).toHaveText('');
+    await menu.click();
+    await expect(nav).toBeVisible();
+    // Cancel navigation to inspect the source page before the browser caches it.
+    await nav.evaluate(node => node.addEventListener('click', event => event.preventDefault(), { once: true }));
+    await nav.getByRole('link', { name: 'Progres', exact: true }).click();
+    await expectClosed();
+    await menu.click();
+    await nav.getByRole('link', { name: 'Progres', exact: true }).click();
+    await expect(page).toHaveURL(/\/progres$/);
+    await expectClosed();
+    await page.getByRole('button', { name: 'Kembali', exact: true }).click();
+    await expect(page).toHaveURL(/\/jalur$/);
+    await expectClosed();
+    await page.getByRole('button', { name: 'Maju', exact: true }).click();
+    await expect(page).toHaveURL(/\/progres$/);
+    await expectClosed();
+    await page.goBack();
+    await expect(page).toHaveURL(/\/jalur$/);
+    await expectClosed();
+    await menu.click();
+    await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true })));
+    await expectClosed();
+    await menu.click();
+    await page.keyboard.press('Escape');
+    await expectClosed();
+    await expect(menu).toBeFocused();
+    await page.screenshot({ path: test.info().outputPath('mobile-menu.png') });
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await expect(menu).toBeHidden();
+    await expect(nav).toBeVisible();
+});
+
 test('navbar theme icons persist and synchronize light dark and system choices', async ({ page }) => {
     await page.goto('/');
     const group = page.getByRole('group', { name: 'Tema halaman', exact: true });

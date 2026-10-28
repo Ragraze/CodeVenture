@@ -241,6 +241,14 @@ export function setupChrome(app, store) {
     window.addEventListener("export-session", () => store.export());
     const menu = document.querySelector(".menu-toggle");
     const nav = document.querySelector("#main-nav");
+    const closeMenu = () => {
+        menu.setAttribute("aria-expanded", "false");
+        nav.classList.remove("open");
+    };
+    window.addEventListener("pageshow", closeMenu);
+    nav.addEventListener("click", (event) => {
+        if (event.target.closest("a")) closeMenu();
+    });
     menu.addEventListener("click", () => {
         const open = menu.getAttribute("aria-expanded") !== "true";
         menu.setAttribute("aria-expanded", String(open));
@@ -248,8 +256,7 @@ export function setupChrome(app, store) {
     });
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && nav.classList.contains("open")) {
-            menu.setAttribute("aria-expanded", "false");
-            nav.classList.remove("open");
+            closeMenu();
             menu.focus();
         }
     });

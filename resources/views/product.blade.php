@@ -14,7 +14,7 @@
     <a class="skip-link" href="#main">Lewati ke konten</a>
     <header class="site-header"><div class="header-inner">
         <a class="wordmark" href="/" aria-label="Codeventure, beranda"><img class="brand-mark" src="/assets/Resources/codeventure-mark.svg" width="44" height="44" alt="">Codeventure</a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+        <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="main-nav"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
         <nav id="main-nav" aria-label="Navigasi utama"><a href="/">Beranda</a><a href="/jalur">Jalur belajar</a><a href="/progres">Progres</a><a href="/catatan">Catatan</a><a href="/pengaturan">Pengaturan</a>
             <div class="theme-switch" role="group" aria-label="Tema halaman">
                 <button type="button" data-theme-choice="light" aria-label="Tema terang" title="Terang" aria-pressed="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>
