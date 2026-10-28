@@ -234,10 +234,6 @@ export function setupChrome(app, store) {
     document.querySelectorAll('[data-theme-choice]').forEach(button => {
         button.addEventListener('click', () => applyTheme(app, button.dataset.themeChoice));
     });
-    const header = document.querySelector(".site-header");
-    const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
-    updateHeader();
-    window.addEventListener("scroll", updateHeader, { passive: true });
     window.addEventListener("export-session", () => store.export());
     const menu = document.querySelector(".menu-toggle");
     const nav = document.querySelector("#main-nav");

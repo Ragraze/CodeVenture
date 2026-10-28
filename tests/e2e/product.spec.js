@@ -95,21 +95,18 @@ test('circular history controls navigate back and forward', async ({ page }) => 
     await expect(controls.getByRole('button', { name: 'Maju', exact: true })).toBeDisabled();
 });
 
-test('sticky navigation stays solid and shows its divider only after scrolling', async ({ page }) => {
+test('sticky navigation keeps its solid background and divider at every scroll position', async ({ page }) => {
     await page.goto('/');
     const header = page.locator('.site-header');
-    await expect(header).not.toHaveClass(/is-scrolled/);
     await expect(header).toHaveCSS('background-color', 'rgb(238, 241, 245)');
-    await expect(header).toHaveCSS('border-bottom-color', 'rgba(0, 0, 0, 0)');
+    await expect(header).toHaveCSS('border-bottom-color', 'rgb(227, 230, 234)');
     await page.evaluate(() => window.scrollTo(0, 600));
-    await expect(header).toHaveClass(/is-scrolled/);
     await expect(header).toHaveCSS('background-color', 'rgb(238, 241, 245)');
     await expect(header).toHaveCSS('border-bottom-color', 'rgb(227, 230, 234)');
     expect((await header.boundingBox()).y).toBe(0);
     await page.evaluate(() => window.scrollTo(0, 0));
-    await expect(header).not.toHaveClass(/is-scrolled/);
     await expect(header).toHaveCSS('background-color', 'rgb(238, 241, 245)');
-    await expect(header).toHaveCSS('border-bottom-color', 'rgba(0, 0, 0, 0)');
+    await expect(header).toHaveCSS('border-bottom-color', 'rgb(227, 230, 234)');
 });
 
 test('search, quiz completion, notes and progress survive a reload', async ({ page }) => {

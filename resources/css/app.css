@@ -231,12 +231,8 @@ small,
     position: sticky;
     top: 0;
     z-index: 60;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid var(--line);
     background: var(--surface);
-    transition: border-color 160ms ease-out;
-}
-.site-header.is-scrolled {
-    border-bottom-color: var(--line);
 }
 html {
     scroll-padding-top: 7rem;

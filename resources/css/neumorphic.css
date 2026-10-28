@@ -39,7 +39,6 @@ html .wordmark .brand-mark {
 }
 html .site-header {
     background: var(--bg);
-    transition: border-color 160ms ease-out;
 }
 html .header-inner {
     padding-block: 0.7rem;
