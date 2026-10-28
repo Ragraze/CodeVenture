@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('telepon')->unique();
             $table->string('email')->unique();
             $table->integer('admin')->default(0);
-            $table->multiLineString('learning_skill')->default('');
+            $table->text('learning_skill')->default('');
             $table->rememberToken();
             $table->timestamps();
         });

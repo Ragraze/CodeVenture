@@ -1,0 +1,67 @@
+.playground {
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 1.25rem;
+    color: var(--ink);
+    margin-block: 1.5rem;
+}
+.playground-hero { margin: 0; }
+.playground-heading,
+.playground-result-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+.playground-heading h2 { font-size: 1.15rem; margin: 0; }
+.playground-heading > span { font-size: 0.75rem; color: var(--muted); }
+.playground label { font-size: 0.8rem; margin-block: 0.6rem 0.3rem; }
+.playground select { font-size: 0.85rem; }
+.playground textarea {
+    font: 0.82rem/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+    background: var(--soft);
+    min-height: 150px;
+    tab-size: 2;
+    resize: vertical;
+    border-color: var(--control);
+}
+.playground .editor-css { min-height: 108px; }
+.playground .editor-js { min-height: 210px; }
+.playground-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+.playground-actions button { font-size: 0.8rem; padding-inline: 0.8rem; }
+.playground-status { margin-block: 0.75rem; overflow-wrap: anywhere; }
+.playground-prompt { margin-top: 1rem; font-size: 0.95rem; }
+.playground-results { border-top: 1px solid var(--line); padding-top: 0.75rem; }
+.playground-result-heading { font-size: 0.8rem; font-weight: 600; }
+.playground-result-heading span { font-weight: 400; font-size: 0.7rem; }
+.playground iframe { display: block; width: 100%; height: 220px; border: 1px solid var(--line); border-radius: 8px; background: white; }
+.playground-console { min-height: 130px; max-height: 240px; white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; background: var(--soft); }
+.playground-checks { padding-left: 1.25rem; margin-block: 0.75rem 0; font-size: 0.85rem; }
+.check-pass { color: var(--success); }
+.check-fail { color: var(--error); }
+.playground-hint { margin-top: 1rem; font-size: 0.9rem; }
+.playground-hint summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; text-decoration: underline; text-underline-offset: 4px; }
+.playground-hint p { margin-block: 0.5rem; }
+.playground [hidden] { display: none !important; }
+.hero-learning-loop { margin-top: 1.5rem; padding: 0; list-style: none; display: grid; gap: 0.65rem; }
+.hero-learning-loop li { font-size: 0.85rem; color: var(--muted); }
+.hero-learning-loop strong { color: var(--ink); margin-right: 0.35rem; }
+.home-path-explorer { display: grid; gap: 1.5rem; margin-top: 2rem; }
+.home-path-explorer .path-preview { background: var(--soft); }
+.home-path-explorer h2 { max-width: 22ch; }
+.home-path-explorer p { max-width: 55ch; }
+.curriculum-note { font-size: 0.85rem; color: var(--muted); margin-top: 1.25rem; }
+@media (min-width: 62rem) {
+    .home-path-explorer { grid-template-columns: 1fr 1fr; align-items: center; gap: 2.5rem; }
+    .landing-intro:has(.playground) { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 2.25rem; }
+}
+@media (max-width: 37.99rem) {
+    .playground { padding: 1rem; }
+    .landing-intro:has(.playground) { padding: 1.25rem; }
+    .landing-intro h1 { font-size: clamp(1.6rem, 7.8vw, 2.1rem); }
+}
+@media print { .playground { display: none; } }
